@@ -1,0 +1,54 @@
+<div class="row mx-auto mt-5">
+    <div class="col col-lg-8 mx-auto border rounded bg-light p-4">
+        <form action="/diary/add-diary" method="post">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingInput" placeholder="https://imageurl..."
+                    name="imageUrl">
+                <label for="floatingInput">Paste Image url <i class="fa-solid fa-image"
+                        style="color: #337eff;"></i></label>
+            </div>
+            <div class="form-floating">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" name="text"
+                    style="height: 200px"></textarea>
+                <label for="floatingTextarea2">Leave your diary <i class="fas fa-file-signature"
+                        style="color: #5c98ff;"></i></label>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Publish <i class="fas fa-paper-plane"
+                    style="color: #ffffff;"></i></button>
+        </form>
+    </div>
+</div>
+
+<div class="row mx-auto">
+    <div class="col col-lg-8 mx-auto mt-5" style="padding: 0;">
+        {{#if diaries }}
+        {{#each diaries }}
+        <div class="card mb-3">
+            <div class="card-header">
+                <h5 class="card-title">
+                    <img src="https://i1.chainbulletin.com/img/2020/04/393952-PCOICX-223.jpg" style="width: 60px;"
+                        alt="">
+                    {{ user.name }}
+                </h5>
+            </div>
+            {{#if imageUrl}}
+            <div class="photo d-flex justify-content-center align-items-center mt-1">
+                <img src="{{ imageUrl }}" class="card-img-top" alt="..." style="width: 300px;">
+            </div>
+            {{/if}}
+            <div class="card-body">
+                <p class="card-text mt-2"> {{ text }} </p>
+                <a href="/diary/{{id}}" class="btn btn-primary">Read more <i class="fa-solid fa-circle-info"
+                        style="color: #ffffff;"></i></a>
+            </div>
+            <div class="card-footer">
+                <p class="card-text"><small class="text-body-secondary"> {{ createdAt }} </small></p>
+            </div>
+        </div>
+        {{/each }}
+        {{else }}
+        <hr>
+        <h2>No diaries found 🤷‍♂️</h2>
+        {{/if}}
+    </div>
+</div>

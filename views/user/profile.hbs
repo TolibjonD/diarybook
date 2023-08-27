@@ -1,0 +1,82 @@
+<section>
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-md-9 col-lg-7 col-xl-5">
+                <div class="card" style="border-radius: 15px;">
+                    <div class="card-body p-4">
+                        <div class="d-flex text-black">
+                            <div class="flex-shrink-0">
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
+                                    alt="Generic placeholder image" class="img-fluid"
+                                    style="width: 180px; border-radius: 10px;">
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h5 class="mb-1"> {{ user.name }} </h5>
+                                <p class="mb-2 pb-1" style="color: #2b2a2a;">{{ user.email }}</p>
+                                <button type="button" class="btn btn-light border position-relative my-3 w-100">
+                                    Diary
+                                    <span
+                                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
+                                        {{ count }}
+                                        <span class="visually-hidden">Amount of diaries</span>
+                                    </span>
+                                </button>
+                                <div class="d-flex pt-1">
+
+                                    {{!-- update --}}
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-primary me-3" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">
+                                        Update
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <form action="/user/profile" method="post">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel"> {{
+                                                            user.name }}
+                                                        </h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+
+                                                        <div class="form-floating mb-3">
+                                                            <input type="email" name="email" class="form-control"
+                                                                id="floatingInput" value="{{ user.email }}"
+                                                                placeholder="name@example.com">
+                                                            <label for="floatingInput">Email address</label>
+                                                        </div>
+                                                        <div class="form-floating">
+                                                            <input type="text" class="form-control"
+                                                                id="floatingPassword" name="name"
+                                                                value="{{ user.name }}" placeholder="Name">
+                                                            <label for="floatingPassword">Name</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary">Save
+                                                            changes</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    {{!-- update --}}
+
+                                    <button type="button" class="btn btn-danger flex-grow-1">Logout</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

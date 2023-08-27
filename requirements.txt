@@ -1,0 +1,7 @@
+express
+nodemoon
+express-handlebars 
+dotenv 
+express-session 
+connect-pg-simple 
+csurf

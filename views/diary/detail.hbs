@@ -1,0 +1,122 @@
+<div class="card mt-4 mb-2">
+    <div class="row g-0">
+        <div class="card-header">
+            <h5 class="card-title">
+                <img src="https://i1.chainbulletin.com/img/2020/04/393952-PCOICX-223.jpg" style="width: 60px;" alt="">
+                {{ diary.user.name }}
+            </h5>
+        </div>
+        {{#if diary.imageUrl}}
+        <div class="col-md-4">
+            <img src="{{diary.imageUrl}}" class="img-fluid rounded-start" alt="...">
+        </div>
+        {{/if}}
+        <div class="col">
+            <div class="card-body">
+                <p class="card-text"> {{ diary.text }} </p>
+            </div>
+        </div>
+        <div class="card-footer ">
+
+            <div class="btns d-flex justify-content-between align-items-center flex-wrap">
+                {{#if isAuthor }}
+                <div class="el d-inline">
+                    <form action="/diary/delete/{{ diary.id }}" method="post" class="d-inline">
+                        <button type="submit" class="btn btn-danger me-2"
+                            onclick="return confirm('Are you sure to remove this diary ?')">Delete <i
+                                class="fa-solid fa-trash" style="color: #ffffff;"></i></button>
+                    </form>
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Update <i class="fa-solid fa-pen" style="color: #ffffff;"></i>
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <form action="/diary/update/{{ diary.id }}" method="post">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel"> Update diary </h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {{#if diary.imageUrl}}
+                                        <img src="{{ diary.imageUrl }}" class="rounded mb-2 mx-auto d-block"
+                                            style="width: 80px;" alt="...">
+                                        {{/if}}
+                                        <div class="form-floating">
+                                            <textarea class="form-control" placeholder="Leave a comment here"
+                                                id="floatingTextarea2" name="text"
+                                                style="height: 300px"> {{ diary.text }} </textarea>
+                                            <label for="floatingTextarea2">Leave your diary <i
+                                                    class="fas fa-file-signature" style="color: #5c98ff;"></i></label>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close <i
+                                                class="fa-solid fa-lock" style="color: #ffffff;"></i></button>
+                                        <button type="submit" class="btn btn-primary">Save changes <i
+                                                class="fa-solid fa-floppy-disk" style="color: #ffffff;"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    {{!-- End modal --}}
+                </div>
+                {{/if}}
+                <p class="card-text d-inline"><small class="text-body-secondary"> {{ diary.createdAt }} </small></p>
+            </div>
+
+
+            {{!-- COMMENT FIELD --}}
+            <div class="collapse mt-3" id="collapseExample">
+                <div class="card card-body p-0 m-0 border-0 bg-light">
+                    <form action="/diary/comments/{{ diary.id }}" method="post">
+                        <div class="form-floating">
+                            <textarea class="form-control" style="height: 100px" placeholder="Leave a comment here"
+                                name="comment" id="floatingTextarea"></textarea>
+                            <label for="floatingTextarea">Leave comment</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3">Publish <i class="fas fa-paper-plane"
+                                style="color: #ffffff;"></i></button>
+                    </form>
+                </div>
+            </div>
+            {{!-- END COMMENT FIELD --}}
+        </div>
+    </div>
+</div>
+
+<button class="btn btn-primary comment__btn" id="comment__btn" type="button" data-bs-toggle="collapse"
+    data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    <i class="fa-solid fa-comment fa-xl" style="color: #ffffff;"></i>
+</button>
+{{#if diary.comments}}
+<h4>Reviews</h4>
+<hr>
+{{#each diary.comments}}
+<div class="card mb-3">
+    <div class="card-header">
+        <h5 class="card-title">
+            <img src="https://icon-library.com/images/icon-programmer/icon-programmer-14.jpg" style="width: 40px;"
+                alt="">
+            {{ username }}
+        </h5>
+    </div>
+    <div class="card-body">
+        <blockquote class="blockquote mb-0">
+            <footer class="blockquote-footer"><cite title="{{id}} - review by {{ username }}" id="comment"> {{ text }}
+                </cite></footer>
+        </blockquote>
+    </div>
+    <div class="card-footer">
+        <small class="text-muted"> {{ createdAt }} </small>
+    </div>
+</div>
+{{/each}}
+{{/if}}

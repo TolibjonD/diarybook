@@ -1,0 +1,20 @@
+DIARYBOOK project todolist: 
+    FIRST DAY TODOS:
+        - DONE npm init ( init project ) 
+        - DONE install requirements
+        - DONE config nodemoon
+        - DONE create index.js file ( MAIN FILE )
+        - DONE CREATE SERVER in index.js
+        - DONE CREATE .env file and config in index.js
+        - DONE config the view engine which is express-handlebars
+        - DONE create controllers and routes path ( folders )
+        - DONE create diary.controllers.js file
+        - DONE create diary.route.js file
+        - DONE initialize my-diary.hbs
+
+    SECOND DAY TODOS:
+        - DONE npm install sequelize pg
+        - DONE create config folder and db.js file in config
+        - DONE create database named diarybook
+        - DONE create models folder and create diary.model.js file in models folder
+

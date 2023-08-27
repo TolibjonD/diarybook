@@ -1,0 +1,18 @@
+*::selection{
+    background: rgb(68, 255, 186);
+}
+
+#comment::selection{
+    background-color: rgb(255, 0, 140);
+    color: white;
+}
+small{
+    user-select: none;
+    cursor: not-allowed;
+}
+#comment__btn {
+    position: fixed;
+    top: 400px;
+    right: 5px;
+    z-index: 111111;
+}
